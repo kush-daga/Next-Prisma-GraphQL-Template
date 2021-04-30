@@ -45,7 +45,7 @@ builder.mutationField("signUp", t =>
       input: t.arg({ type: SignUpInput })
     },
     authScopes: {
-      unAuthenticated: true
+      isUnauthenticated: true
     },
     resolve: async (_root, { input }, { req }) => {
       const user = await prisma.user.create({

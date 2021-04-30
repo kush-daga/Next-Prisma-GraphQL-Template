@@ -11,7 +11,5 @@ export const Test = () => {
     }
   `;
 
-  const sthg: UserQuery = null;
-
   return <div>Hello</div>;
 };

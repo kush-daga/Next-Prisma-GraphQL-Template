@@ -5,16 +5,23 @@ import {
   shouldRenderGraphiQL
 } from "graphql-helix";
 import { NextApiHandler } from "next/types";
+import { IncomingHttpHeaders } from "node:http";
 import schema from "../../src/graphql/index";
 import { resolveSession } from "../../src/utils/sessions";
 
 export default (async (req, res) => {
   const session = await resolveSession({ req, res });
 
-  const request = {
+  interface GraphQLRequest {
+    body?: any;
+    headers: IncomingHttpHeaders;
+    method: string;
+    query: any;
+  }
+  const request: GraphQLRequest = {
     body: req.body,
     headers: req.headers,
-    method: req.method,
+    method: req.method ?? "GET",
     query: req.query
   };
 

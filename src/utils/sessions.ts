@@ -6,7 +6,7 @@ import { GetServerSidePropsContext } from "next";
 import prisma from "./prisma";
 
 export const sessionOptions: SessionOptions = {
-  password: [{ id: 1, password: process.env.COOKIE_SECRET }],
+  password: [{ id: 1, password: process.env.COOKIE_SECRET as string }],
   cookieName: "template-repo",
   cookieOptions: {
     secure: process.env.NODE_ENV === "production",
