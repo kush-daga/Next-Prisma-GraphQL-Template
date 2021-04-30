@@ -6,24 +6,34 @@ import ValidationPlugin from "@giraphql/plugin-validation";
 
 export const builder = new SchemaBuilder<{
   DefaultInputFieldRequiredness: true;
-  Objects: {
-    User: User;
-  };
   Context: {
     req: IncomingMessage;
     res: OutgoingMessage;
-    user?: User;
+    user?: User | null;
+    session?: Session | null;
+  };
+  Scalars: {
+    DateTime: { Input: Date; Output: Date };
   };
   AuthScopes: {
     user: boolean;
+    isUnauthenticated: boolean;
   };
 }>({
-  plugins: [ValidationPlugin, ScopeAuthPlugin],
-  authScopes: async ({ req, res, user }) => {
-    return { user: !!user };
-  },
-  defaultInputFieldRequiredness: true
+  defaultInputFieldRequiredness: true,
+  plugins: [ScopeAuthPlugin, ValidationPlugin],
+  authScopes: async context => ({
+    user: !!context.user,
+    isUnauthenticated: !context.user
+  })
 });
 
 builder.queryType({});
 builder.mutationType({});
+
+builder.scalarType("DateTime", {
+  serialize: date => date.toISOString(),
+  parseValue: date => {
+    return new Date(date);
+  }
+});

@@ -9,7 +9,9 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  DateTime: any;
 };
+
 
 export type LoginInput = {
   email: Scalars['String'];
@@ -19,6 +21,7 @@ export type LoginInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   login: User;
+  logout: Scalars['Boolean'];
   signUp: User;
 };
 

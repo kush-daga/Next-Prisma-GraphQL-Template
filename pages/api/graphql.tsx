@@ -33,7 +33,8 @@ export default (async (req, res) => {
         return {
           req,
           res,
-          user: session?.user
+          user: session?.user,
+          session: session
         };
       }
     });
