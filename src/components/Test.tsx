@@ -3,15 +3,15 @@ import { gql } from "apollo-server-core";
 import { UserQuery } from "./__generated__/Test.generated";
 
 export const Test = () => {
-	const userQuery = gql`
-		query User {
-			user {
-				id
-			}
-		}
-	`;
+  const userQuery = gql`
+    query User {
+      me {
+        id
+      }
+    }
+  `;
 
-	const sthg: UserQuery = null;
+  const sthg: UserQuery = null;
 
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 };

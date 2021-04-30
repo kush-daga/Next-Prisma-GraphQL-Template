@@ -1,22 +1,25 @@
-input CreateUserInput {
+input LoginInput {
   email: String!
-  firstName: String!
-  lastName: String!
-  photoUrl: String!
+  password: String!
 }
 
 type Mutation {
-  createUser(input: CreateUserInput): User!
+  login(input: LoginInput!): User!
+  signUp(input: SignUpInput!): User!
 }
 
 type Query {
-  user: [User!]!
+  me: User
+}
+
+input SignUpInput {
+  email: String!
+  name: String!
+  password: String!
 }
 
 type User {
   email: String!
-  firstName: String!
   id: ID!
-  lastName: String!
-  photoUrl: String!
+  name: String!
 }

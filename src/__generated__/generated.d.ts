@@ -11,33 +11,41 @@ export type Scalars = {
   Float: number;
 };
 
-export type CreateUserInput = {
+export type LoginInput = {
   email: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  photoUrl: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createUser: User;
+  login: User;
+  signUp: User;
 };
 
 
-export type MutationCreateUserArgs = {
-  input?: Maybe<CreateUserInput>;
+export type MutationLoginArgs = {
+  input: LoginInput;
+};
+
+
+export type MutationSignUpArgs = {
+  input: SignUpInput;
 };
 
 export type Query = {
   __typename?: 'Query';
-  user: Array<User>;
+  me?: Maybe<User>;
+};
+
+export type SignUpInput = {
+  email: Scalars['String'];
+  name: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type User = {
   __typename?: 'User';
   email: Scalars['String'];
-  firstName: Scalars['String'];
   id: Scalars['ID'];
-  lastName: Scalars['String'];
-  photoUrl: Scalars['String'];
+  name: Scalars['String'];
 };
