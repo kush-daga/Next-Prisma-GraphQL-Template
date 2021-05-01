@@ -6,8 +6,8 @@ import {
 } from "graphql-helix";
 import { NextApiHandler } from "next/types";
 import { IncomingHttpHeaders } from "node:http";
-import schema from "../../src/graphql/index";
-import { resolveSession } from "../../src/utils/sessions";
+import schema from "../../graphql/index";
+import { resolveSession } from "../../utils/sessions";
 
 export default (async (req, res) => {
   const session = await resolveSession({ req, res });
